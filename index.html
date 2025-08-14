@@ -48,6 +48,25 @@
     .eso a{color:#1a73e8;text-decoration:none}
     footer{margin-top:120px;background:var(--footer);color:#fff;text-align:center;padding:36px 16px}
     footer h2{margin:0 0 8px;font-size:2rem}
+      /* TOPBAR confianza */
+    .topbar{background:#0b1b22;color:#e6fff2;display:flex;justify-content:center;align-items:center;gap:10px;padding:8px 12px;font-size:13px}
+    .topbar .lock{font-size:14px;opacity:.9}
+    .topbar a{color:#90e1ff;text-decoration:none}
+
+    /* Microcopy bajo botón */
+    .micro{font-size:13px;color:#555;margin-top:8px}
+
+    /* TRUST badges */
+    .trust{width:92%;max-width:1100px;margin:14px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+    .trust .item{background:#fff;border:1px solid #eee;border-radius:16px;padding:12px;display:flex;align-items:flex-start;gap:10px}
+    .trust .item .emo{font-size:20px;line-height:1}
+    .trust .item b{display:block;margin-bottom:2px}
+
+    /* FAQ */
+    .faq{width:92%;max-width:1100px;margin:16px auto 0}
+    .faq details{background:#fff;border:1px solid #eee;border-radius:14px;padding:12px 14px;margin-bottom:8px}
+    .faq summary{cursor:pointer;font-weight:700}
+
   </style>
 
   <!-- Meta Pixel Code (ID actualizado) -->
@@ -66,12 +85,14 @@
 </head>
 
 <body>
+  <div class="topbar"><span class="lock">🔒</span> Conexión segura &nbsp;•&nbsp; Soporte 24/7 &nbsp;•&nbsp; Nunca pedimos claves ni códigos 2FA. <a href="#privacidad">Política de privacidad</a></div>
   <header>
     <img class="wa-mark" src="https://static.whatsapp.net/rsrc.php/yZ/r/JvsnINJ2CZv.svg" alt="WhatsApp">
     <img class="logo" src="logo.png" alt="MyStake Logo">
     <!-- Fallback sin JS => anuncio 1 -->
-    <a class="boton" id="wa-btn" href="https://wa.link/k6uqo7" target="_blank" rel="noopener">Ir al chat</a>
+    <a class="boton" id="wa-btn" href="https://wa.link/m3z0oc" target="_blank" rel="noopener">Ir al chat</a>
   </header>
+    <div class="micro">⏱️ Respondemos en ~5 minutos. Jamás compartimos tu información.</div>
 
   <div class="cta-panel">
     <div class="cta-text">Envía el siguiente mensaje por WhatsApp para crear tu usuario:</div>
@@ -80,11 +101,36 @@
       <p>¿Aún no tenés WhatsApp?</p>
       <a href="https://www.whatsapp.com/download" target="_blank" rel="noopener">Descargar</a>
     </div>
-  </div>
+
+  <!-- TRUST badges -->
+  <section class="trust" aria-label="Razones para confiar">
+    <div class="item"><span class="emo">✅</span><div><b>Pagos en el acto</b><span>Procesos claros y confirmación por chat.</span></div></div>
+    <div class="item"><span class="emo">🕑</span><div><b>Atención 24/7</b><span>Siempre disponible por WhatsApp.</span></div></div>
+    <div class="item"><span class="emo">🛡️</span><div><b>Datos protegidos</b><span>No pedimos claves ni tokens.</span></div></div>
+    <div class="item"><span class="emo">📄</span><div><b>Políticas visibles</b><span>Privacidad y condiciones claras.</span></div></div>
+  </section>
+
+  <!-- FAQ confianza -->
+  <section class="faq">
+    <details>
+      <summary>¿Qué datos tengo que enviar?</summary>
+      <p>Solo tu nombre y cómo querés que te contactemos. Nunca pedimos datos bancarios ni claves.</p>
+    </details>
+    <details>
+      <summary>¿Cuánto tardan en responder?</summary>
+      <p>Normalmente menos de 5 minutos. Si tardamos, quedás en prioridad.</p>
+    </details>
+    <details>
+      <summary>¿Cómo protegen mis datos?</summary>
+      <p>Usamos conexión segura (HTTPS). No compartimos tu información con terceros.</p>
+    </details>
+  </section>
 
   <footer>
     <h2 class="tzt">WhatsApp</h2>
     <p>Atención por WhatsApp</p>
+    <p style="opacity:.9;margin-top:10px">Contacto alternativo: <a href="mailto:soporte@tusitio.com" style="color:#9ee2ff">soporte@tusitio.com</a></p>
+    <p id="privacidad" style="opacity:.7;font-size:12px;margin:12px auto 0;max-width:800px">Aviso: Este sitio no almacena datos de tarjeta. Nunca te pediremos claves, códigos de verificación ni token de tu banco. Consultá nuestra <a href="#privacidad" style="color:#9ee2ff">Política de Privacidad</a> y <a href="#terminos" style="color:#9ee2ff">Términos</a>.</p>
   </footer>
 
   <!-- Routing por anuncio (1..4) + evento Lead con parámetro src -->
@@ -103,10 +149,10 @@
 
     // 4 wa.link (uno por anuncio) — reemplazá los códigos si querés usar otros
     const LINKS = {
-      '1': 'https://wa.link/k6uqo7',
-      '2': 'https://wa.link/dmynw7',
-      '3': 'https://wa.link/2e7pqa',
-      '4': 'https://wa.link/r0nbeh'
+      '1': 'https://wa.link/m3z0oc',
+      '2': 'https://wa.link/tvzw90',
+      '3': 'https://wa.link/ps4x8f',
+      '4': 'https://wa.link/l9cjh4'
     };
 
     // Setear botón y enviar Lead con src
