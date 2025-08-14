@@ -14,8 +14,8 @@
     .wa-mark{display:block;width:clamp(24px,4vw,36px);height:auto;margin:0 auto 10px}
     @media (min-width:1200px){ .wa-mark{width:40px} }
     .logo{
-      width: clamp(120px, 18vw, 180px);
-      height: clamp(120px, 18vw, 180px);
+      width: clamp(96px, 28vw, 160px);
+      height: clamp(96px, 28vw, 160px);
       border-radius:50%;
       object-fit:cover;
       display:block;
@@ -67,6 +67,16 @@
     .faq details{background:#fff;border:1px solid #eee;border-radius:14px;padding:12px 14px;margin-bottom:8px}
     .faq summary{cursor:pointer;font-weight:700}
 
+      /* Layout wrapper para móviles */
+    .wrap{width:min(100%,560px);margin-inline:auto;padding:clamp(10px,4vw,16px)}
+    .topbar .wrap{display:flex;align-items:center;justify-content:center;gap:8px}
+
+    /* Ajustes finos para pantallas chicas */
+    @media (max-width:480px){
+      footer{margin-top:60px;padding:28px 12px}
+      .cta-text{font-size:15px}
+      .boton{padding:14px 24px;font-size:16px}
+    }
   </style>
 
   <!-- Meta Pixel Code (ID actualizado) -->
@@ -85,32 +95,39 @@
 </head>
 
 <body>
-  <div class="topbar"><span class="lock">🔒</span> Conexión segura &nbsp;•&nbsp; Soporte 24/7 &nbsp;•&nbsp; Nunca pedimos claves ni códigos 2FA. <a href="#privacidad">Política de privacidad</a></div>
+  <div class="topbar"><div class="wrap"><span class="lock">🔒</span> Conexión segura &nbsp;•&nbsp; Soporte 24/7 &nbsp;•&nbsp; Nunca pedimos claves ni códigos 2FA. <a href="#privacidad">Política de privacidad</a></div></div>
   <header>
+    <div class="wrap">
     <img class="wa-mark" src="https://static.whatsapp.net/rsrc.php/yZ/r/JvsnINJ2CZv.svg" alt="WhatsApp">
     <img class="logo" src="logo.png" alt="MyStake Logo">
     <!-- Fallback sin JS => anuncio 1 -->
     <a class="boton" id="wa-btn" href="https://wa.link/m3z0oc" target="_blank" rel="noopener">Ir al chat</a>
+      </div>
   </header>
     <div class="micro">⏱️ Respondemos en ~5 minutos. Jamás compartimos tu información.</div>
 
-  <div class="cta-panel">
+  <div class="wrap"><div class="cta-panel">
     <div class="cta-text">Envía el siguiente mensaje por WhatsApp para crear tu usuario:</div>
     <p class="rtp"><strong>“Hola, quiero crear mi usuario. Mi nombre es: ”</strong></p>
     <div class="eso">
       <p>¿Aún no tenés WhatsApp?</p>
       <a href="https://www.whatsapp.com/download" target="_blank" rel="noopener">Descargar</a>
     </div>
+    </div>
+  </div>
 
   <!-- TRUST badges -->
+  <div class="wrap">
   <section class="trust" aria-label="Razones para confiar">
     <div class="item"><span class="emo">✅</span><div><b>Pagos en el acto</b><span>Procesos claros y confirmación por chat.</span></div></div>
     <div class="item"><span class="emo">🕑</span><div><b>Atención 24/7</b><span>Siempre disponible por WhatsApp.</span></div></div>
     <div class="item"><span class="emo">🛡️</span><div><b>Datos protegidos</b><span>No pedimos claves ni tokens.</span></div></div>
     <div class="item"><span class="emo">📄</span><div><b>Políticas visibles</b><span>Privacidad y condiciones claras.</span></div></div>
   </section>
+  </div>
 
   <!-- FAQ confianza -->
+  <div class="wrap">
   <section class="faq">
     <details>
       <summary>¿Qué datos tengo que enviar?</summary>
@@ -125,13 +142,16 @@
       <p>Usamos conexión segura (HTTPS). No compartimos tu información con terceros.</p>
     </details>
   </section>
+  </div>
 
   <footer>
+  <div class="wrap">
     <h2 class="tzt">WhatsApp</h2>
     <p>Atención por WhatsApp</p>
     <p style="opacity:.9;margin-top:10px">Contacto alternativo: <a href="mailto:soporte@tusitio.com" style="color:#9ee2ff">soporte@tusitio.com</a></p>
     <p id="privacidad" style="opacity:.7;font-size:12px;margin:12px auto 0;max-width:800px">Aviso: Este sitio no almacena datos de tarjeta. Nunca te pediremos claves, códigos de verificación ni token de tu banco. Consultá nuestra <a href="#privacidad" style="color:#9ee2ff">Política de Privacidad</a> y <a href="#terminos" style="color:#9ee2ff">Términos</a>.</p>
-  </footer>
+    </div>
+</footer>
 
   <!-- Routing por anuncio (1..4) + evento Lead con parámetro src -->
   <script>
