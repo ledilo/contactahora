@@ -38,6 +38,20 @@
     .boton:active{transform:translateY(0) scale(.95);box-shadow:0 8px 20px rgba(0,0,0,.14)}
     @media (prefers-reduced-motion: reduce){ .boton{animation:none} }
 
+    /* ORDEN HEADER (botón arriba del logo) */
+    header .wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+    .wa-mark{order:1}
+    .boton{order:2}
+    .logo{order:3}
+
+    /* Tamaño del botón principal */
+    .boton{height:74px;display:inline-flex;align-items:center;justify-content:center}
+
+    /* Botón flotante WA */
+    .fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:64px;height:64px;border-radius:50%;background:var(--wa-dark);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:translateY(10px) scale(.95);transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:1000}
+    .fab.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+    .fab img{width:34px;height:auto;filter:brightness(0) invert(1)}
+
     /* PANEL INFO */
     .cta-panel{width:92%;max-width:1100px;margin:14px auto 0;background:#f2f2f2;border-radius:24px;padding:22px 18px;text-align:center}
     .cta-text{font-size:17px;margin:6px 0 6px;color:#333}
@@ -104,7 +118,7 @@
     <a class="boton" id="wa-btn" href="https://wa.link/m3z0oc" target="_blank" rel="noopener">Ir al chat</a>
       </div>
   </header>
-    <div class="micro">⏱️ Respondemos en ~5 minutos. Jamás compartimos tu información.</div>
+  <a class="fab" id="wa-fab" href="https://wa.link/m3z0oc" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="https://static.whatsapp.net/rsrc.php/yZ/r/JvsnINJ2CZv.svg" alt=""></a>
 
   <div class="wrap"><div class="cta-panel">
     <div class="cta-text">Envía el siguiente mensaje por WhatsApp para crear tu usuario:</div>
@@ -180,9 +194,36 @@
     if (!btn) return;
     btn.href = LINKS[SRC] || LINKS['1'];
 
+    // Sincronizar link del FAB
+    const fab = document.getElementById('wa-fab');
+    if (fab) { fab.href = btn.href; }
+
     btn.addEventListener('click', () => {
       if (window.fbq) fbq('track','Lead', { src: SRC, content_name: 'WhatsApp Click' });
     });
+    // Mostrar FAB cuando el botón principal no esté visible
+    (function(){
+      const btn = document.getElementById('wa-btn');
+      const fab = document.getElementById('wa-fab');
+      if (!btn || !fab) return;
+      function setFab(visible){ fab.classList.toggle('show', !visible); }
+      if ('IntersectionObserver' in window){
+        const io = new IntersectionObserver(([entry]) => setFab(entry.isIntersecting), {threshold: 0});
+        io.observe(btn);
+      } else {
+        const onScroll = () => {
+          const r = btn.getBoundingClientRect();
+          const inView = r.bottom > 0 && r.top < (window.innerHeight || document.documentElement.clientHeight);
+          setFab(inView);
+        };
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
+      }
+      // Track desde FAB
+      fab.addEventListener('click', () => {
+        if (window.fbq) fbq('track','Lead', { src: SRC, content_name: 'WhatsApp Click (FAB)' });
+      });
+    })();
   })();
   </script>
 </body>
