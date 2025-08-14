@@ -9,13 +9,10 @@
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
 
-    /* ORDEN HEADER (WA > LOGO > BOTÓN) */
-header .wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
-.wa-mark{order:1}
-.logo{order:2}
-.boton{order:3}
-   .wa-mark{display:block;width:74px;height:auto;margin:0 auto 10px}
-@media (min-width:1200px){ .wa-mark{width:74px} }
+    /* HEADER (ícono WhatsApp + logo + botón grande) */
+    header{padding:18px 16px 10px;text-align:center}
+    .wa-mark{display:block;width:clamp(64px,10vw,96px);height:auto;margin:0 auto 10px}
+    @media (min-width:1200px){ .wa-mark{width:96px} }
     .logo{
       width: clamp(96px, 28vw, 160px);
       height: clamp(96px, 28vw, 160px);
@@ -41,14 +38,14 @@ header .wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
     .boton:active{transform:translateY(0) scale(.95);box-shadow:0 8px 20px rgba(0,0,0,.14)}
     @media (prefers-reduced-motion: reduce){ .boton{animation:none} }
 
-    /* ORDEN HEADER (botón arriba del logo) */
+    /* ORDEN HEADER (WA > LOGO > BOTÓN) */
     header .wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
     .wa-mark{order:1}
-    .boton{order:2}
-    .logo{order:3}
+    .boton{order:3}
+    .logo{order:2}
 
     /* Tamaño del botón principal */
-.boton{height:74px;display:inline-flex;align-items:center;justify-content:center}
+    .boton{height:auto;min-height:48px;display:inline-flex;align-items:center;justify-content:center}
 
     /* Botón flotante WA */
     .fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:64px;height:64px;border-radius:50%;background:var(--wa-dark);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:translateY(10px) scale(.95);transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:1000}
