@@ -2,228 +2,214 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WhatsApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>¡Creamos tu usuario!</title>
+  <meta name="description" content="Creamos tu usuario en minutos. Contador activo, contacto directo por WhatsApp. Mínimo de carga $2000." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root{--wa:#25D366;--wa-dark:#128C7E;--footer:#0f1a21;--text:#111}
+    :root{
+      --blue:#1ea7ff;      /* azul principal */
+      --blue-2:#0ea5e9;    /* acento */
+      --bg:#05070b;        /* negro azulado */
+      --card:#0b1320;
+      --text:#e9f1ff;
+      --muted:#9fb3c8;
+      --wa:#25D366;        /* color del botón de WhatsApp */
+      --shadow: 0 10px 30px rgba(30,167,255,.20), 0 6px 18px rgba(0,0,0,.35);
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
-
-    /* HEADER (ícono WhatsApp + logo + botón grande) */
-    header{padding:18px 16px 10px;text-align:center}
-    .wa-mark{display:block;width:clamp(64px,10vw,96px);height:auto;margin:0 auto 10px}
-    @media (min-width:1200px){ .wa-mark{width:96px} }
-    .logo{
-      width: clamp(96px, 28vw, 160px);
-      height: clamp(96px, 28vw, 160px);
-      border-radius:50%;
-      object-fit:cover;
-      display:block;
-      margin:10px auto 18px;
-      box-shadow:0 6px 20px rgba(0,0,0,.12);
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(30,167,255,.22), transparent 60%),
+        radial-gradient(1000px 600px at -10% 110%, rgba(14,165,233,.18), transparent 60%),
+        #05070b;
     }
-    @media (min-width:1200px){ .logo{ width:200px; height:200px } }
 
-    /* BOTÓN con latido + hover/active (más grande en header) */
-    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.035)}100%{transform:scale(1)}}
-    .boton{
-      display:inline-block;background:var(--wa-dark);color:#fff;text-decoration:none;
-      padding:16px 36px;border-radius:999px;font-weight:800;letter-spacing:.25px;
-      font-size:clamp(16px,2.2vw,20px);
-      box-shadow:0 8px 20px rgba(0,0,0,.14);
-      transition:transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .2s ease, filter .2s ease;
-      will-change:transform;cursor:pointer;touch-action:manipulation;animation:pulse 2.6s ease-in-out infinite;
+    .wrap{max-width:1000px;margin:0 auto;padding:26px 16px 64px}
+    header{display:flex;align-items:center;justify-content:center;margin:6px 0 10px}
+    header img{height:40px;width:auto;filter:drop-shadow(0 2px 8px rgba(30,167,255,.35))}
+
+    .hero{display:grid;place-items:center;gap:16px;text-align:center}
+    .kicker{font:600 14px/1 Poppins,Inter,system-ui;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+    h1{font:800 clamp(28px,7vw,56px)/1 Poppins,Inter,system-ui;margin:0;letter-spacing:.02em;text-shadow:0 6px 28px rgba(30,167,255,.28)}
+    h1 .stroke{color:transparent;-webkit-text-stroke:1px #bfe5ff; text-shadow:none}
+    .sub{font:600 clamp(13px,2.8vw,18px)/1.25 Poppins;margin:2px 0 8px;color:#b9d6f5;letter-spacing:.08em;text-transform:uppercase}
+
+    .timer{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;background:linear-gradient(180deg,#16a34a,#059669);
+      color:#fff;font:800 clamp(24px,6.5vw,40px)/1 Poppins;box-shadow:0 12px 28px rgba(5,150,105,.35);min-width:210px;letter-spacing:.04em}
+
+    .cta{display:inline-flex;align-items:center;gap:10px;margin-top:6px;padding:14px 22px;border:none;border-radius:14px;background:var(--wa);
+      color:#fff;font:700 17px/1.1 Inter;text-decoration:none;box-shadow:0 10px 22px rgba(37,211,102,.35)}
+    .cta img, .cta .wa-ico{width:22px;height:22px}
+    .cta:active{transform:translateY(1px)}
+
+    .minimo{margin:18px 0 8px;font:600 clamp(14px,3.8vw,18px)/1.2 Poppins;color:#b9d6f5;letter-spacing:.08em}
+    .minimo span{display:block;font:800 clamp(28px,9vw,56px)/1 Poppins;color:#fff}
+
+    .stage{position:relative;display:grid;place-items:center;margin:12px 0 24px;width:min(960px,100%)}
+    .device-img{width:min(440px,78vw);height:auto;filter:drop-shadow(0 24px 48px rgba(0,0,0,.6)) drop-shadow(0 0 32px rgba(30,167,255,.22))}
+
+    /* Fallback "celular" por CSS si no se sube la imagen */
+    .device-css{display:none;position:relative;width:min(440px,78vw);height:calc(min(440px,78vw)*2.02);border-radius:36px;padding:18px;background:linear-gradient(180deg,#0f1627,#0a0f1c);box-shadow:var(--shadow);border:2px solid rgba(255,255,255,.06)}
+    .device-css:before{content:"";position:absolute;inset:12px;border-radius:28px;background:radial-gradient(240px 280px at 30% 10%, rgba(30,167,255,.20), transparent 60%), linear-gradient(180deg,#0b1320,#04070b)}
+    .device-css .notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:34%;height:18px;border-radius:0 0 12px 12px;background:#000c}
+    .device-css .screen-copy{position:absolute;inset:48px 20px;border-radius:22px;background:linear-gradient(180deg,#101b2f,#0d1424);display:grid;place-items:center;color:#bfe5ff;font:700 18px Inter;text-align:center}
+
+    /* Monedas opcionales */
+    .coin{position:absolute;width:64px;height:64px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.6));animation:float 6s ease-in-out infinite;opacity:.95}
+    .coin.c1{left:6%;top:54%}
+    .coin.c2{right:10%;top:36%;animation-delay:1.2s}
+    .coin.c3{right:18%;bottom:6%;animation-delay:.6s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+    footer{margin-top:24px;color:#8aa4bf;font:500 12px/1.4 Inter;text-align:center;opacity:.9}
+    footer a{color:#bfe5ff}
+
+    @media (min-width:920px){
+      .wrap{padding-bottom:88px}
+      .hero{gap:18px}
+      .stage{margin:24px 0 32px}
     }
-    .boton:hover{transform:translateY(-1px) scale(1.07);box-shadow:0 14px 28px rgba(0,0,0,.18);filter:saturate(1.06)}
-    .boton:active{transform:translateY(0) scale(.95);box-shadow:0 8px 20px rgba(0,0,0,.14)}
-    @media (prefers-reduced-motion: reduce){ .boton{animation:none} }
 
-    /* ORDEN HEADER (WA > LOGO > BOTÓN) */
-    header .wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
-    .wa-mark{order:1}
-    .boton{order:3}
-    .logo{order:2}
-
-    /* Tamaño del botón principal */
-    .boton{height:auto;min-height:48px;display:inline-flex;align-items:center;justify-content:center}
-
-    /* Botón flotante WA */
-    .fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:64px;height:64px;border-radius:50%;background:var(--wa-dark);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;visibility:hidden;transform:translateY(10px) scale(.95);transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:1000}
-    .fab.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-    .fab img{width:34px;height:auto;filter:brightness(0) invert(1)}
-
-    /* PANEL INFO */
-    .cta-panel{width:92%;max-width:1100px;margin:14px auto 0;background:#f2f2f2;border-radius:24px;padding:22px 18px;text-align:center}
-    .cta-text{font-size:17px;margin:6px 0 6px;color:#333}
-
-    /* TEXTO INFERIOR + FOOTER */
-    .bcd{text-align:center;padding:22px 16px 0}
-    .rtp{margin:12px 0 8px}
-    .eso a{color:#1a73e8;text-decoration:none}
-    footer{margin-top:120px;background:var(--footer);color:#fff;text-align:center;padding:36px 16px}
-    footer h2{margin:0 0 8px;font-size:2rem}
-      /* TOPBAR confianza */
-    .topbar{background:#0b1b22;color:#e6fff2;display:flex;justify-content:center;align-items:center;gap:10px;padding:8px 12px;font-size:13px}
-    .topbar .lock{font-size:14px;opacity:.9}
-    .topbar a{color:#90e1ff;text-decoration:none}
-
-    /* Microcopy bajo botón */
-    .micro{font-size:13px;color:#555;margin-top:8px}
-
-    /* TRUST badges */
-    .trust{width:92%;max-width:1100px;margin:14px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-    .trust .item{background:#fff;border:1px solid #eee;border-radius:16px;padding:12px;display:flex;align-items:flex-start;gap:10px}
-    .trust .item .emo{font-size:20px;line-height:1}
-    .trust .item b{display:block;margin-bottom:2px}
-
-    /* FAQ */
-    .faq{width:92%;max-width:1100px;margin:16px auto 0}
-    .faq details{background:#fff;border:1px solid #eee;border-radius:14px;padding:12px 14px;margin-bottom:8px}
-    .faq summary{cursor:pointer;font-weight:700}
-
-      /* Layout wrapper para móviles */
-    .wrap{width:min(100%,560px);margin-inline:auto;padding:clamp(10px,4vw,16px)}
-    .topbar .wrap{display:flex;align-items:center;justify-content:center;gap:8px}
-
-    /* Ajustes finos para pantallas chicas */
-    @media (max-width:480px){
-      footer{margin-top:60px;padding:28px 12px}
-      .cta-text{font-size:15px}
-      .boton{padding:14px 24px;font-size:16px}
+    /* Accesibilidad: menos animación */
+    @media (prefers-reduced-motion: reduce){
+      .coin{animation:none}
+      .cta,.timer{transition:none}
     }
   </style>
-
-  <!-- Meta Pixel Code (ID actualizado) -->
+  <!-- Facebook Pixel (sin CAPI) -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','580008711524307');
-    fbq('track','PageView');
+    fbq('init', '973322538310425');
+    fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=580008711524307&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel Code -->
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=973322538310425&ev=PageView&noscript=1"/></noscript>
 </head>
-
 <body>
-  <div class="topbar"><div class="wrap"><span class="lock">🔒</span> Conexión segura &nbsp;•&nbsp; Soporte 24/7 &nbsp;•&nbsp; Nunca pedimos claves ni códigos 2FA. <a href="#privacidad">Política de privacidad</a></div></div>
-  <header>
-    <div class="wrap">
-    <img class="wa-mark" src="https://static.whatsapp.net/rsrc.php/yZ/r/JvsnINJ2CZv.svg" alt="WhatsApp">
-    <img class="logo" src="logo.png" alt="MyStake Logo">
-    <!-- Fallback sin JS => anuncio 1 -->
-    <a class="boton" id="wa-btn" href="https://wa.link/k6uqo7" target="_blank" rel="noopener">Ir al chat</a>
+  <div class="wrap">
+    <header>
+      <!-- Subí tu logo a /img/logo.png (opcional) -->
+      <img src="img/logo.png" alt="Logo" onerror="this.style.display='none'">
+    </header>
+
+    <section class="hero" aria-labelledby="t1">
+      <div class="kicker">Oferta por tiempo limitado</div>
+      <h1 id="t1">Creamos <span class="stroke">tu usuario</span></h1>
+      <div class="sub">¡Antes de que termine el tiempo!</div>
+
+      <div id="timer" class="timer" aria-live="polite">00:59</div>
+
+      <a id="cta" class="cta" href="#" rel="nofollow noopener">
+        <svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 2a9 9 0 00-7.8 13.5L3 22l6.7-1.8A9 9 0 1012 2zm4.7 12.6c-.2.5-1.1 1-1.6 1.1-.4.1-1 .1-1.6 0-.3-.1-.7-.2-1.2-.5-2.1-1-3.4-3.1-3.5-3.3-.1-.2-.8-1.2-.8-2.3s.5-1.6.7-1.8c.2-.2.4-.3.6-.3h.4c.1 0 .3 0 .4.3l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.2.3 0 .6.2.3.7 1.1 1.6 1.8.9.8 1.7 1.1 2 .9.3-.4.5-.6.7-.5l1.8.8c.3.1.3.3.3.5 0 .1 0 .3-.2.5z"/>
+        </svg>
+        ¡Háblanos por WhatsApp!
+      </a>
+
+      <div class="minimo">MÍNIMO DE CARGA <span id="minimo">$2000</span></div>
+
+      <div class="stage">
+        <!-- Celular como imagen (recomendado). Archivo: /img/phone.png -->
+        <img class="device-img" id="deviceImg" src="/img/Phone.png" alt="App en el teléfono" loading="eager" decoding="async" onerror="this.style.display='none';document.querySelector('.device-css').style.display='block'">
+        <!-- Fallback por CSS si la imagen no está -->
+        <div class="device-css">
+          <div class="notch"></div>
+          <div class="screen-copy">Vista previa del teléfono</div>
+        </div>
+        <!-- Monedas opcionales (mismo archivo reutilizado) /img/coin.png -->
+        <img class="coin c1" src="img/coin.png" alt="" onerror="this.remove()">
+        <img class="coin c2" src="img/coin.png" alt="" onerror="this.remove()">
+        <img class="coin c3" src="img/coin.png" alt="" onerror="this.remove()">
       </div>
-  </header>
-  <a class="fab" id="wa-fab" href="https://wa.link/k6uqo7" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="https://static.whatsapp.net/rsrc.php/yZ/r/JvsnINJ2CZv.svg" alt=""></a>
+    </section>
 
-  <div class="wrap"><div class="cta-panel">
-    <div class="cta-text">Envía el siguiente mensaje por WhatsApp para crear tu usuario:</div>
-    <p class="rtp"><strong>“Hola, vengo del anuncio ”</strong></p>
-    <div class="eso">
-      <p>¿Aún no tenés WhatsApp?</p>
-      <a href="https://www.whatsapp.com/download" target="_blank" rel="noopener">Descargar</a>
-    </div>
-    </div>
+    <footer>
+      Atención 24/7 · Soporte por WhatsApp · Diseño azul/negro optimizado para móviles.
+    </footer>
   </div>
 
-  <!-- TRUST badges -->
-  <div class="wrap">
-  <section class="trust" aria-label="Razones para confiar">
-    <div class="item"><span class="emo">✅</span><div><b>Pagos en el acto</b><span>Retiros y pagos de forma rápida.</span></div></div>
-    <div class="item"><span class="emo">🕑</span><div><b>Atención 24/7</b><span>Siempre disponible por WhatsApp.</span></div></div>
-    <div class="item"><span class="emo">🛡️</span><div><b>Datos protegidos</b><span>No pedimos datos personales.</span></div></div>
-    <div class="item"><span class="emo">📄</span><div><b>Políticas visibles</b><span>Privacidad y condiciones claras.</span></div></div>
-  </section>
-  </div>
-
-  <!-- FAQ confianza -->
-  <div class="wrap">
-  <section class="faq">
-    <details>
-      <summary>¿Qué datos tengo que enviar?</summary>
-      <p>Solo tu nombre y cómo querés que te llamemos. No pedimos más datos.</p>
-    </details>
-    <details>
-      <summary>¿Cuánto tardan en responder?</summary>
-      <p>Normalmente menos de 3 minutos.</p>
-    </details>
-    <details>
-      <summary>¿Cómo protegen mis datos?</summary>
-      <p>Usamos conexión segura (HTTPS). No compartimos tu información con terceros.</p>
-    </details>
-  </section>
-  </div>
-
-  <footer>
-  <div class="wrap">
-    <h2 class="tzt">WhatsApp</h2>
-    <p>Atención por WhatsApp</p>
-    <p id="privacidad" style="opacity:.7;font-size:12px;margin:12px auto 0;max-width:800px">Aviso: Este sitio no almacena datos de tarjeta. Nunca te pediremos claves, códigos de verificación ni token de tu banco. Consultá nuestra <a href="#privacidad" style="color:#9ee2ff">Política de Privacidad</a> y <a href="#terminos" style="color:#9ee2ff">Términos</a>.</p>
-    </div>
-</footer>
-
-  <!-- Routing por anuncio (1..4) + evento Lead con parámetro src -->
   <script>
-  (function(){
-    // Detectar anuncio 1..4 desde ?src o #src (acepta "scr" por si se pasa mal)
-    const url = new URL(location.href);
-    const q = url.searchParams;
-    let raw = q.get('src') || q.get('scr') || '';
-    if (!raw && url.hash){
-      const h = new URLSearchParams(url.hash.replace(/^#\?*/, ''));
-      raw = h.get('src') || h.get('scr') || '';
-    }
-    const n   = (String(raw).match(/\d+/)||[])[0];
-    const SRC = (n && +n>=1 && +n<=4) ? String(+n) : '1';
+    // ======= CONFIGURACIÓN RÁPIDA =======
+    const MINIMO_CARGA = 2000; // cambia el mínimo
+    const DEFAULT_WHATSAPP = "+5492610000000"; // <-- REEMPLAZÁ con tu número (con código de país, sin espacios)
+    const MENSAJE_BASE = "¡Hola! Vengo por el aviso y quiero crear mi usuario.";
+    // Enlaces por SRC -> wa.link (1,2,3)
+    const WA_LINKS = { '1': 'https://wa.link/k6uqo7', '2': 'https://wa.link/dmynw7', '3': 'https://wa.link/2e7pqa' };
+    // ====================================
 
-    // 4 wa.link (uno por anuncio) — reemplazá los códigos si querés usar otros
-    const LINKS = {
-      '1': 'https://wa.link/k6uqo7',
-      '2': 'https://wa.link/dmynw7',
-      '3': 'https://wa.link/2e7pqa',
-      '4': 'https://wa.link/r0nbeh'
+    // === Config Pixel: moneda/valor usados SOLO para el evento Lead ===
+    const PIXEL_CURRENCY = 'USD';         // tu cuenta está en USD
+    const PIXEL_VALUE = 1;                // valor ejemplo en USD (cámbialo si querés) 
+    // ====================================
+
+    // Pintar el mínimo de carga con formato local
+    const minimoEl = document.getElementById('minimo');
+    minimoEl.textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(MINIMO_CARGA);
+
+    // Contador evergreen (reinicia a 59s)
+    let secs = 59;
+    const tEl = document.getElementById('timer');
+    const tick = () => {
+      const mm = String(Math.floor(secs/60)).padStart(2,'0');
+      const ss = String(secs % 60).padStart(2,'0');
+      tEl.textContent = `${mm}:${ss}`;
+      secs = (secs <= 0) ? 59 : secs - 1;
     };
+    tick();
+    setInterval(tick, 1000);
 
-    // Setear botón y enviar Lead con src
-    const btn = document.getElementById('wa-btn');
-    if (!btn) return;
-    btn.href = LINKS[SRC] || LINKS['1'];
+    // Construir link de WhatsApp (permite override por query ?wa= y pasa src si existe)
+    function buildWaUrl(){
+      const q = new URLSearchParams(location.search);
+      const n = (q.get('wa') || DEFAULT_WHATSAPP).replace(/\D/g,'');
+      const srcRaw = (q.get('src') || q.get('scr') || '').trim();
+      const src = srcRaw || '1';
+      if (WA_LINKS[src]) { return WA_LINKS[src]; }
+      let msg = MENSAJE_BASE + ` Mínimo de carga ${minimoEl.textContent}.`;
+      if (src) msg += ` (src=${src})`;
+      return `https://wa.me/${n}?text=${encodeURIComponent(msg)}`;
+    }
+    const cta = document.getElementById('cta');
+    cta.href = buildWaUrl();
 
-    // Sincronizar link del FAB
-    const fab = document.getElementById('wa-fab');
-    if (fab) { fab.href = btn.href; }
-
-    btn.addEventListener('click', () => {
-      if (window.fbq) fbq('track','Lead', { src: SRC, content_name: 'WhatsApp Click' });
+    // Track Lead (Cliente potencial) al click del botón y luego redirigir
+    cta.addEventListener('click', function(e){
+      try{
+        const q = new URLSearchParams(location.search);
+        const scr = (q.get('src') || q.get('scr') || '1');
+        if (window.fbq) {
+          fbq('track', 'Lead', { value: PIXEL_VALUE, currency: PIXEL_CURRENCY, content_name: 'WhatsApp Click', src: scr });
+          // Pequeño delay para asegurar el envío del evento
+          e.preventDefault();
+          const url = this.href;
+          setTimeout(()=>{ location.href = url; }, 250);
+        }
+      }catch(err){}
     });
-    // Mostrar FAB cuando el botón principal no esté visible
+
+    // ===== Imagen del celular: seteo simple + override por query =====
     (function(){
-      const btn = document.getElementById('wa-btn');
-      const fab = document.getElementById('wa-fab');
-      if (!btn || !fab) return;
-      function setFab(visible){ fab.classList.toggle('show', !visible); }
-      if ('IntersectionObserver' in window){
-        const io = new IntersectionObserver(([entry]) => setFab(entry.isIntersecting), {threshold: 0});
-        io.observe(btn);
-      } else {
-        const onScroll = () => {
-          const r = btn.getBoundingClientRect();
-          const inView = r.bottom > 0 && r.top < (window.innerHeight || document.documentElement.clientHeight);
-          setFab(inView);
-        };
-        window.addEventListener('scroll', onScroll, {passive:true});
-        onScroll();
+      const el = document.getElementById('deviceImg');
+      const fb = document.querySelector('.device-css');
+      // Si nos pasan ?img=... reemplazamos el src
+      const q = new URLSearchParams(location.search);
+      const override = q.get('img');
+      if (override) {
+        el.src = override.startsWith('/') || override.includes('http') ? override : '/img/' + override;
       }
-      // Track desde FAB
-      fab.addEventListener('click', () => {
-        if (window.fbq) fbq('track','Lead', { src: SRC, content_name: 'WhatsApp Click (FAB)' });
-      });
+      // Por si falla la carga
+      el.addEventListener('error', ()=>{ fb.style.display='block'; el.style.display='none'; });
     })();
-  })();
   </script>
 </body>
 </html>
